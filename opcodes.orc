@@ -48,7 +48,7 @@ xout ares
  endop
 
  opcode pitchmodJosie_wt, a, aaakjoo ;optional wavetable input
-aamp, acps, acpsmod, asemitamount, iwf, iphs, istor xin
+aamp, acps, acpsmod, ksemitamount, iwf, iphs, istor xin
 amod poscil3 ksemitamount, acpsmod
 acps *= semitone(amod)
 ares oscilikt aamp, acps, iwf, iphs, istor

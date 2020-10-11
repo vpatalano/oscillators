@@ -54,4 +54,16 @@ acps *= semitone(amod)
 ares oscilikt aamp, acps, iwf, iphs, istor
 xout ares
  endop
+ 
+ 
+ opcode pitchmodJosie_pw, a, aaakkoo ;optional wavetable input
+aamp, acps, acpsmod, ksemitamount, kpw, iftcos, iphs xin
+if (iftcos==0) then
+          iftcos ftgenonce 0,0,16384,11,1
+endif
+amod poscil3 ksemitamount, acpsmod
+acps *= semitone(amod)
+ares gbuzz aamp, acps, int(.5*sr/kcps)-16, 2, 2*abs:k(.5-limit:k(kpw,0,1)), iftcos 
+xout ares
+ endop
 

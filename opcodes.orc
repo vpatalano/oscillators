@@ -21,15 +21,17 @@ ares += anext
 xout ares
  endop
 
- opcode "groscBoulder", a, ikkoooo
+ opcode "groscBoulder", a, ikkOOOO
 irisf ftgenonce 0,0,16384,-19,.5,.5,270,.5
-gidur, kamp, kcps, kformant, kspread, koct, kband xin ;3 arguments required, 3 optional
+igdur, kamp, kcps, kformant, kspread, koct, kband xin ;3 arguments required, 3 optional
 kformant = kcps*semitone:k(kformant) ;input kformant in units of semitones
 kband = 0 ;bandwidth setting for FOF, usually zero
 klfo phasor 1
 klfo= (klfo > .5 ? (1-klfo):klfo) ;make triangle
 kband += klfo*.25 ;bit of octave warble
 irist = igdur/7 ;rise time
+klfogrpitch lfo kspread, kcps*.5, 2 ;bisq
+kformant *= semitone:k(klfogrpitch)
 ares fof kamp, kcps, kformant, koct, kband, irist, igdur, irist, 1000, -1, irisf, p3
 xout ares
  endop

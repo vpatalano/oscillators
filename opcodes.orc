@@ -46,3 +46,12 @@ kformant *= semitone:k(klfogrpitch)
 ares fof kamp, kcps, kformant, koct, kband, irist, igdur, irist, 1000, -1, irisf, p3
 xout ares
  endop
+
+ opcode pitchmodJosie_wt, a, aaakjoo ;optional wavetable input
+aamp, acps, acpsmod, asemitamount, iwf, iphs, istor xin
+amod poscil3 ksemitamount, acpsmod
+acps *= semitone(amod)
+ares oscilikt aamp, acps, iwf, iphs, istor
+xout ares
+ endop
+

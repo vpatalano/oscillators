@@ -1,3 +1,10 @@
+#ifdef CALCULATE_VCO2INIT_TABLES
+ginextfree vco2init 16, $CALCULATE_VCO2INIT_TABLES, -1, 2048, 16384, -1 ;triangle
+ginextfree vco2init 8, ginextfree, -1, 2048, 16384, -1 ;square
+ginextfree vco2init 4, ginextfree, -1, 2048, 16384, -1 ;pulse
+ginextfree vco2init 2, ginextfree, -1, 2048, 16384, -1 ;integ saw
+ginextfree vco2init 1, ginextfree, -1, 2048, 16384, -1 ;saw
+#
 
  opcode schmuzz, a, aaPOPopp
 aamp, acps, klfocps, klfodc, klfoscl, iftcos, iharmonics, ilowh xin
@@ -11,9 +18,13 @@ ares gbuzz aamp, acps, inumh, ilowh, kmul, iftcos
 xout ares
  endop
 
- opcode "SuperVcoSaw_mono", a, kkki
-kamp, kcps, kdetune, ivx xin
-ares vco2 kamp, kcps*semitone(kdetune*ivx), 0, 0, random:i(0,1)
+ opcode "SuperVcoSaw_mono", a, kkkijj
+kamp, kcps, kdetune, ivx, iphs, iskipinit xin
+if iphs<0 then
+     iphs random 0, 1
+endif
+kcps__ = kcps*semitone(kdetune*ivx)
+ares vco2 kamp, kcps, -iskipinit, 0, iphs
 if ivx>1 then 
 anext SuperVcoSaw_mono kamp, kcps, kdetune, ivx-1
 endif

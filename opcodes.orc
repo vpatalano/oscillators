@@ -4,7 +4,7 @@ ginextfree vco2init 8, ginextfree, -1, 2048, 16384, -1 ;square
 ginextfree vco2init 4, ginextfree, -1, 2048, 16384, -1 ;pulse
 ginextfree vco2init 2, ginextfree, -1, 2048, 16384, -1 ;integ saw
 ginextfree vco2init 1, ginextfree, -1, 2048, 16384, -1 ;saw
-#
+#end
 
  opcode schmuzz, a, aaPOPopp
 aamp, acps, klfocps, klfodc, klfoscl, iftcos, iharmonics, ilowh xin

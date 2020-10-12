@@ -67,7 +67,7 @@ ares gbuzz aamp, acps, int(.5*sr/kcps)-16, 2, 2*abs:k(.5-limit:k(kpw,0,1)), iftc
  xout ares
  endop
 
-  bpnoiseAjax a, aaaaiVVPPPPP
+  opcode "bpnoiseAjax", a, aaaaiVVPPPPP
  acenterf, aamp, acps, afilterbw, inumlayers, kalpha, kbeta, kWht, kGau, kPnk, kBrn, kBet xin
  aRwht unirand 1
  aRgau gauss 1

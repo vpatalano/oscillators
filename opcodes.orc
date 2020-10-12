@@ -15,7 +15,7 @@ inumh = int((sr/2)/p5)*iharmonics
 kmul oscil klfoscl, klfocps
 kmul = klfodc+.5+kmul*.5
 ares gbuzz aamp, acps, inumh, ilowh, kmul, iftcos
-xout ares
+ xout ares
  endop
 
  opcode "SuperVcoSaw_mono", a, kkkijj
@@ -29,7 +29,7 @@ if ivx>1 then
 anext SuperVcoSaw_mono kamp, kcps, kdetune, ivx-1
 endif
 ares += anext
-xout ares
+ xout ares
  endop
 
  opcode "groscBoulder", a, ikkOOOO
@@ -44,7 +44,7 @@ irist = igdur/7 ;rise time
 klfogrpitch lfo kspread, kcps*.5, 2 ;bisq
 kformant *= semitone:k(klfogrpitch)
 ares fof kamp, kcps, kformant, koct, kband, irist, igdur, irist, 1000, -1, irisf, p3
-xout ares
+ xout ares
  endop
 
  opcode pitchmodJosie_wt, a, aaakjoo ;optional wavetable input
@@ -52,7 +52,7 @@ aamp, acps, acpsmod, ksemitamount, iwf, iphs, istor xin
 amod poscil3 ksemitamount, acpsmod
 acps *= semitone(amod)
 ares oscilikt aamp, acps, iwf, iphs, istor
-xout ares
+ xout ares
  endop
  
  
@@ -64,6 +64,27 @@ endif
 amod poscil3 ksemitamount, acpsmod
 acps *= semitone(amod)
 ares gbuzz aamp, acps, int(.5*sr/kcps)-16, 2, 2*abs:k(.5-limit:k(kpw,0,1)), iftcos 
-xout ares
+ xout ares
  endop
 
+  bpnoiseAjax a, aaaaiVVPPPPP
+ acenterf, aamp, acps, afilterbw, inumlayers, kalpha, kbeta, kWht, kGau, kPnk, kBrn, kBet xin
+ aRwht unirand 1
+ aRgau gauss 1
+ aRpnk fractalnoise 1, 1
+ aRbrn fractalnoise 1, 2
+ aRbet betarand 1, kalpha, kbeta
+ aRsum sum aRwht, aRgau, aRpnk, aRbrn, aRbet
+ aRsum *= db(-5.75*int((kWht, kGau, kPnk, kBrn, kBet)/2))
+ ares resonx aRsum, acenterf, afilterbw, 16, 1
+ ares *= aamp
+  xout ares
+  endop
+  
+  opcode "Oscil_oneplus", a, aaii
+ aamp, acps, ift, iphs xin ;in this opcode, aamp is relative to 1
+ aamp = abs(aamp)%1
+ ares oscil aamp, acps, ift, iphs
+ ares += 1
+  xout ares
+  endop

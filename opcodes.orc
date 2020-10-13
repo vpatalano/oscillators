@@ -31,7 +31,12 @@ endif
 ares += anext
  xout ares
  endop
-
+/*
+ opcode "groscOne_ist", aa, kki ;granulize a single segment of a source table
+ksnipstart, ksnipstop, ifsrc xin ;accepts only (pow-of-2) size tables
+ares1 syncgrain 1, kcps, ktransp, 0, 0, .01, .35, .08, 1000, ifsrc, ifwindow, p3, kgrphs, 0
+ endop
+*/
  opcode "groscBoulder", a, ikkOOOO
 irisf ftgenonce 0,0,16384,-19,.5,.5,270,.5
 igdur, kamp, kcps, kformant, kspread, koct, kband xin ;3 arguments required, 3 optional

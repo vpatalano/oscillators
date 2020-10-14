@@ -58,17 +58,18 @@ ares fof kamp, kcps, kformant, koct, kband, irist, igdur, irist, 1000, -1, irisf
  xout ares
  endop
 
- opcode ptklJ, a, aaj
-agrainfreq, async, kenv2
-
-/*
+ opcode ptklJ, a, aa
+V
+agrainfreq, async, awavfm, asamplepos1, asamplepos2, asamplepos3, asamplepos4, kwavefreq, ienv_attack, ienv_decay
+kwavekey1, kwavekey2, kwavekey3, kwavekey4, kwaveform1, kwaveform2, kwaveform3, kwaveform4, kduration, kenv2amt, ksustain_amount, 
+icosine, 
 a1 partikkel agrainfreq, \
               0, -1, async, kenv2amt, ienv2tab, ienv_attack, \
               ienv_decay, ksustain_amount, ka_d_ratio, kduration, kamp, -1, \
-              kwavfreq, ksweepshape, -1, -1, awavfm, \
+              kwavfreq,  .5, -1, -1, awavfm, \
               -1, kfmenv, icosine, ktraincps, knumpartials, kchroma, \
-              ichannelmasks, krandommask, kwaveform1, kwaveform2, kwaveform3, \
-              kwaveform4, iwaveamptab, asamplepos1, asamplepos2, asamplepos3, \
+              -1, krandommask, kwaveform1, kwaveform2, kwaveform3, \
+              kwaveform4, -1, asamplepos1, asamplepos2, asamplepos3, \
               asamplepos4, kwavekey1, kwavekey2, kwavekey3, kwavekey4, imax_grains \
               [, iopcode_id, ipanlaws]
 */

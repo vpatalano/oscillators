@@ -33,8 +33,8 @@ ares += anext
  endop
 /*
  opcode "groscOne_ist", aa, kki ;granulize a single segment of a source table
-ksnipstart, ksnipstop, ifsrc xin ;accepts only (pow-of-2) size tables
-ares1 syncgrain 1, kcps, ktransp, 0, 0, .01, .35, .08, 1000, ifsrc, ifwindow, p3, kgrphs, 0
+ksnipstart, kstop, ifsrc xin ;accepts only (pow-of-2) size tables
+ares1 syncloop 1, kcps, ktransp, kgrsize, 0, kstart, kstop, ifsrc, ifwdw, 1000, istart
  endop
 */
  opcode "groscBoulder", a, ikkOOOO

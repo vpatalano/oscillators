@@ -58,24 +58,29 @@ ares fof kamp, kcps, kformant, koct, kband, irist, igdur, irist, 1000, -1, irisf
  xout ares
  endop
 
- opcode pitchmodJosie_wt, a, aaakjoo ;optional wavetable input
-aamp, acps, acpsmod, ksemitamount, iwf, iphs, istor xin
-amod poscil3 ksemitamount, acpsmod
-acps *= semitone(amod)
-ares oscilikt aamp, acps, iwf, iphs, istor
+ opcode "semitSin", a, aao 
+asemitamount, acpsmod, iphs
+alfo poscil3 asemitamount, acpsmod, -1, iphs
+alfo = semitone(alfo)
+xout alfo
+ endop
+
+ opcode pitchmodJosie_wt, a, aaaajoo ;optional wavetable input
+aamp, acps, acpsmod, asemitamount, iwf, iphs, istor xin
+amod semitSin asemitamount, acpsmod
+ares oscilikt aamp, acps*amod, iwf, iphs, istor
  xout ares
  endop
  
  
- opcode pitchmodJosie_pw, a, aaakkoo ;optional wavetable input
-aamp, acps, acpsmod, ksemitamount, kpw, iftcos, iphs xin
+ opcode pitchmodJosie_pw, a, aaaakoo ;optional wavetable input
+aamp, acps, acpsmod, asemitamount, kpw, iftcos, iphs xin
 if (iftcos==0) then
           iftcos ftgenonce 0,0,16384,11,1
 endif
-amod poscil3 ksemitamount, acpsmod
+amod semitSin asemitamount, acpsmod
 kcps downsamp acps
-acps *= semitone(amod)
-ares gbuzz aamp, acps, int(.5*sr/kcps)-16, 2, 2*abs:k(.5-limit:k(kpw,0,1)), iftcos 
+ares gbuzz aamp, acps*amod, int(.5*sr/kcps)-16, 2, 2*abs:k(.5-limit:k(kpw,0,1)), iftcos 
  xout ares
  endop
 

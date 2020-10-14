@@ -58,6 +58,21 @@ ares fof kamp, kcps, kformant, koct, kband, irist, igdur, irist, 1000, -1, irisf
  xout ares
  endop
 
+ opcode ptklJ, a, aaj
+agrainfreq, async, kenv2
+
+/*
+a1 partikkel agrainfreq, \
+              0, -1, async, kenv2amt, ienv2tab, ienv_attack, \
+              ienv_decay, ksustain_amount, ka_d_ratio, kduration, kamp, -1, \
+              kwavfreq, ksweepshape, -1, -1, awavfm, \
+              -1, kfmenv, icosine, ktraincps, knumpartials, kchroma, \
+              ichannelmasks, krandommask, kwaveform1, kwaveform2, kwaveform3, \
+              kwaveform4, iwaveamptab, asamplepos1, asamplepos2, asamplepos3, \
+              asamplepos4, kwavekey1, kwavekey2, kwavekey3, kwavekey4, imax_grains \
+              [, iopcode_id, ipanlaws]
+*/
+
  opcode "semitSin", a, aao 
 asemitamount, acpsmod, iphs
 alfo poscil3 asemitamount, acpsmod, -1, iphs

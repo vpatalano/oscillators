@@ -98,10 +98,17 @@ ares gbuzz aamp, acps*amod, int(.5*sr/kcps)-16, 2, 2*abs:k(.5-limit:k(kpw,0,1)),
   xout ares
   endop
   
-  opcode "Oscil_oneplus", a, aaii
+  opcode "Oscil_1pl", a, aaii
  aamp, acps, ift, iphs xin ;in this opcode, aamp is relative to 1
  aamp = abs(aamp)%1
  ares oscil aamp, acps, ift, iphs
  ares += 1
   xout ares
   endop
+
+ opcode "Phasor_1pl", a, aaii
+aamp, acps, ift, iphs xin ;in this opcode, aamp is relative to 1
+ares phasor aamp, acps, ift, iphs
+ares += 1
+xout ares
+ endop

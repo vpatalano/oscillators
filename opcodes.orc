@@ -32,10 +32,13 @@ ares += anext
  xout ares
  endop
 
- opcode "groscOne_i", a, kkkkii ;granulize a single segment of a source table
-kcps, ktransp, kstart, kstop, ifsrc, ifwdw xin ;accepts only (pow-of-2) size tables
+ opcode "groscOne_i", a, ikkkPPo ;granulize a single segment of a source table
+ifsrc, kcps, kstart, kstop, ktransp, kgrsizem, ifwdw xin ;accepts only (pow-of-2) size tables
+if ifwdw==0 then
+     ifwdw ftgenonce 0,0,16384,-20,5
+endif
 istart = i(kstart)
-kgrsize = kstop-kstart
+kgrsize divz (kstop-kstart)*kgrsizem, ktransp, 1000
 ares1 syncloop 1, kcps, ktransp, kgrsize, 0, kstart, kstop, ifsrc, ifwdw, 1000, istart
 xout ares1
  endop

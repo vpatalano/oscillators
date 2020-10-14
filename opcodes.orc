@@ -32,11 +32,12 @@ ares += anext
  xout ares
  endop
 
- opcode "groscOne_ist", aa, kki ;granulize a single segment of a source table
+ opcode "groscOne_i", a, kkkkii ;granulize a single segment of a source table
 kcps, ktransp, kstart, kstop, ifsrc, ifwdw xin ;accepts only (pow-of-2) size tables
 istart = i(kstart)
-kgrsize = kend-kstart
+kgrsize = kstop-kstart
 ares1 syncloop 1, kcps, ktransp, kgrsize, 0, kstart, kstop, ifsrc, ifwdw, 1000, istart
+xout ares1
  endop
 
  opcode "groscBoulder", a, ikkOOOO
@@ -69,6 +70,7 @@ if (iftcos==0) then
           iftcos ftgenonce 0,0,16384,11,1
 endif
 amod poscil3 ksemitamount, acpsmod
+kcps downsamp acps
 acps *= semitone(amod)
 ares gbuzz aamp, acps, int(.5*sr/kcps)-16, 2, 2*abs:k(.5-limit:k(kpw,0,1)), iftcos 
  xout ares
@@ -82,7 +84,7 @@ ares gbuzz aamp, acps, int(.5*sr/kcps)-16, 2, 2*abs:k(.5-limit:k(kpw,0,1)), iftc
  aRbrn fractalnoise 1, 2
  aRbet betarand 1, kalpha, kbeta
  aRsum sum aRwht, aRgau, aRpnk, aRbrn, aRbet
- aRsum *= db(-5.75*int((kWht, kGau, kPnk, kBrn, kBet)/2))
+ aRsum *= db(-5.75*int((kWht+kGau+kPnk+kBrn+kBet)/2))
  ares resonx aRsum, acenterf, afilterbw, 16, 1
  ares *= aamp
   xout ares

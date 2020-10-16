@@ -57,7 +57,7 @@ kformant *= semitone:k(klfogrpitch)
 ares fof kamp, kcps, kformant, koct, kband, irist, igdur, irist, 1000, -1, irisf, p3
  xout ares
  endop
-
+/*
  opcode ptklJ, a, aa
 V
 agrainfreq, async, awavfm, asamplepos1, asamplepos2, asamplepos3, asamplepos4, kwavefreq, ienv_attack, ienv_decay
@@ -128,3 +128,21 @@ ares phasor aamp, acps, ift, iphs
 ares += 1
 xout ares
  endop
+ 
+ opcode "shinereson", a, ikV
+inumlayers, kbasefreq, kresonance xin
+agauss gauss 1
+kbw = kbasefreq*.125*kresonance
+ares resony agauss, kbasefreq, kbw, inumlayers, kbasefreq, 1, 1
+xout ares
+ endop
+ 
+ opcode "shinereson_oct", a, ikPV
+inumlayers, kbasefreq, koctsep, kresonance xin
+agauss gauss 1
+kbw = kbasefreq*.125*kresonance
+ares resony agauss, kbasefreq, kbw, inumlayers, koctsep, 0, 1
+xout ares
+ endop
+ 
+ 

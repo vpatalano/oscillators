@@ -145,4 +145,14 @@ ares resony agauss, kbasefreq, kbw, inumlayers, inumlayers*koctsep, 0, 1
 xout ares
  endop
  
+ opcode "gaussHat", a, 0
+aenv expon 1, .08, .125
+ares gauss 1
+aresd diff ares
+aresd balance aresd, ares
+aresd *= aenv
+xout aresd
+ endop
+ 
+ 
  

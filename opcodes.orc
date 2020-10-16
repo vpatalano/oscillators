@@ -132,15 +132,15 @@ xout ares
  opcode "shinereson", a, ikV
 inumlayers, kbasefreq, kresonance xin
 agauss gauss 1
-kbw = kbasefreq*.125*kresonance
-ares resony agauss, kbasefreq, kbw, inumlayers, kbasefreq, 1, 1
+kbw = kbasefreq*(1/32)*kresonance
+ares resony agauss, kbasefreq, kbw, inumlayers, inumlayers, 1, 1
 xout ares
  endop
  
  opcode "shinereson_oct", a, ikPV
 inumlayers, kbasefreq, koctsep, kresonance xin
 agauss gauss 1
-kbw = kbasefreq*.125*kresonance
+kbw = kbasefreq*(1/32)*kresonance
 ares resony agauss, kbasefreq, kbw, inumlayers, koctsep, 0, 1
 xout ares
  endop

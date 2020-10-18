@@ -140,7 +140,7 @@ xout ares
  opcode "shinereson_oct", a, ikPV
 inumlayers, kbasefreq, kresonance, koctsep xin
 agauss gauss 1
-kbw = kbasefreq*(1/32)*kresonance
+kbw = kbasefreq*(1/32)*kresonancem
 ares resony agauss, kbasefreq, kbw, inumlayers, inumlayers*koctsep, 0, 1
 xout ares
  endop
@@ -153,6 +153,13 @@ aresd balance aresd, ares
 aresd *= aenv
 xout aresd
  endop
+
+ opcode "donk1", a, ko
+kcps, ifn xin 
+ares pluck 1, kcps, 16383, ifn, 1
+xout ares
+ endop
+
  
  
  

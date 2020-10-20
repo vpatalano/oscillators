@@ -57,22 +57,22 @@ kformant *= semitone:k(klfogrpitch)
 ares fof kamp, kcps, kformant, koct, kband, irist, igdur, irist, 1000, -1, irisf, p3
  xout ares
  endop
-/*
- opcode ptklJ, a, aa
-V
-agrainfreq, async, awavfm, asamplepos1, asamplepos2, asamplepos3, asamplepos4, kwavefreq, ienv_attack, ienv_decay
-kwavekey1, kwavekey2, kwavekey3, kwavekey4, kwaveform1, kwaveform2, kwaveform3, kwaveform4, kduration, kenv2amt, ksustain_amount, 
-icosine, 
-a1 partikkel agrainfreq, \
-              0, -1, async, kenv2amt, ienv2tab, ienv_attack, \
-              ienv_decay, ksustain_amount, ka_d_ratio, kduration, kamp, -1, \
-              kwavfreq,  .5, -1, -1, awavfm, \
-              -1, kfmenv, icosine, ktraincps, knumpartials, kchroma, \
-              -1, krandommask, kwaveform1, kwaveform2, kwaveform3, \
-              kwaveform4, -1, asamplepos1, asamplepos2, asamplepos3, \
-              asamplepos4, kwavekey1, kwavekey2, kwavekey3, kwavekey4, imax_grains \
-              [, iopcode_id, ipanlaws]
-*/
+
+ opcode ptkl_J, a, aaaaaaakkOVVOPPPPJJJJJooo
+;                                                                                                                 default=0.5                  default=0            default=1             default=1              default=-1              default=-1          default=0             default=0
+;                                                                                                    default=0                     default=0.5           default=1             default=1             default=-1              default=-1              default=-1            default=0          
+agrainfreq, async, awavfm, asamplepos1, asamplepos2, asamplepos3, asamplepos4, kwavfreq,  kduration, krandommask, ksustain_amount, ka_d_ratio, kenv2amt, kwavekey1, kwavekey2, kwavekey3, kwavekey4, kwaveform1, kwaveform2, kwaveform3, kwaveform4, kfmenv, ienv_attack, ienv_decay, ienv2tab xin
+asig	partikkel agrainfreq, 0, -1, async, kenv2amt, ienv2tab, \
+               ienv_attack, ienv_decay, ksustain_amount, ka_d_ratio, kduration, 1, -1, \
+               kwavfreq, 0, -1, -1, awavfm, \
+               -1, kfmenv, -1, 0, 0, \
+               0, -1, krandommask, kwaveform1, kwaveform2, kwaveform3, kwaveform4, \
+               -1, asamplepos1, asamplepos2, asamplepos3, asamplepos4, \
+               kwavekey1, kwavekey2, kwavekey3, kwavekey4, 256
+xout asig
+ endop
+
+
 
  opcode "semitSin", a, aao 
 asemitamount, acpsmod, iphs

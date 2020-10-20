@@ -71,8 +71,12 @@ asig	partikkel agrainfreq, 0, -1, async, kenv2amt, ienv2tab, \
                kwavekey1, kwavekey2, kwavekey3, kwavekey4, 256
 xout asig
  endop
-
-
+ 
+ opcode ptkl_JSin, a, aaakkOVVOPPPPJooojo
+agrainfreq, async, awavfm, kwavfreq, kduration, krandommask, ksustain_amount, ka_d_ratio, kenv2amt, kwavekey1, kwavekey2, kwavekey3, kwavekey4, kfmenv, ienv_attack, ienv_decay, ienv2tab, isin, iphase xin
+asig ptkl_J agrainfreq, async, awavfm, kwavfreq, iphs, iphs, iphs, iphs, kwavfreq, kduration, krandommask, ksustain_amount, ka_d_ratio, kenv2amt, kwavekey1, kwavekey2, kwavekey3, kwavekey4, isin, isin, isin, isin, kfmenv, ienv_attack, ienv_decay, ienv2tab 
+xout asig
+ endop
 
  opcode "semitSin", a, aao 
 asemitamount, acpsmod, iphs

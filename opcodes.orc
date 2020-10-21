@@ -47,7 +47,7 @@ xout ares1
 irisf ftgenonce 0,0,16384,-19,.5,.5,270,.5
 igdur, kamp, kcps, kformant, kspread, koct, kband xin ;3 arguments required, 3 optional
 kformant = kcps*semitone:k(kformant) ;input kformant in units of semitones
-kband = 0 ;bandwidth setting for FOF, usually zero
+kband = 0 ;bandwidth setting for FOF,usually zero
 klfo phasor 1
 klfo= (klfo > .5 ? (1-klfo):klfo) ;make triangle
 kband += klfo*.25 ;bit of octave warble
@@ -73,13 +73,13 @@ xout asig
  endop
  
  opcode ptkl_JSin, a, aaakkOVVOPPPPJooojo
-agrainfreq, async, awavfm, kwavfreq, kduration, krandommask, ksustain_amount, ka_d_ratio, kenv2amt, kwavekey1, kwavekey2, kwavekey3, kwavekey4, kfmenv, ienv_attack, ienv_decay, ienv2tab, isin, iphase xin
-asig ptkl_J agrainfreq, async, awavfm, kwavfreq, iphs, iphs, iphs, iphs, kwavfreq, kduration, krandommask, ksustain_amount, ka_d_ratio, kenv2amt, kwavekey1, kwavekey2, kwavekey3, kwavekey4, isin, isin, isin, isin, kfmenv, ienv_attack, ienv_decay, ienv2tab 
+agrainfreq, async, awavfm, kwavfreq, kduration, krandommask, ksustain_amount, ka_d_ratio, kenv2amt, kwavekey1, kwavekey2, kwavekey3, kwavekey4, kfmenv, ienv_attack, ienv_decay, ienv2tab, isin, iphs xin
+asig ptkl_J agrainfreq, async, awavfm, a(iphs), a(iphs), a(iphs), a(iphs), kwavfreq, kduration, krandommask, ksustain_amount, ka_d_ratio, kenv2amt, kwavekey1, kwavekey2, kwavekey3, kwavekey4, k(isin), k(isin), k(isin), k(isin), kfmenv, ienv_attack, ienv_decay, ienv2tab 
 xout asig
  endop
 
  opcode "semitSin", a, aao 
-asemitamount, acpsmod, iphs
+asemitamount, acpsmod, iphs xin
 alfo poscil3 asemitamount, acpsmod, -1, iphs
 alfo = semitone(alfo)
 xout alfo
@@ -98,6 +98,7 @@ aamp, acps, acpsmod, asemitamount, kpw, iftcos, iphs xin
 if (iftcos==0) then
           iftcos ftgenonce 0,0,16384,11,1
 endif
+
 amod semitSin asemitamount, acpsmod
 kcps downsamp acps
 ares gbuzz aamp, acps*amod, int(.5*sr/kcps)-16, 2, 2*abs:k(.5-limit:k(kpw,0,1)), iftcos 
@@ -126,9 +127,9 @@ ares gbuzz aamp, acps*amod, int(.5*sr/kcps)-16, 2, 2*abs:k(.5-limit:k(kpw,0,1)),
   xout ares
   endop
 
- opcode "Phasor_1pl", a, aaii
-aamp, acps, ift, iphs xin ;in this opcode, aamp is relative to 1
-ares phasor aamp, acps, ift, iphs
+ opcode "Phasor_1pl", a, ai
+acps, iphs xin ;in this opcode, aamp is relative to 1
+ares phasor acps, iphs
 ares += 1
 xout ares
  endop
@@ -144,7 +145,7 @@ xout ares
  opcode "shinereson_oct", a, ikPV
 inumlayers, kbasefreq, kresonance, koctsep xin
 agauss gauss 1
-kbw = kbasefreq*(1/32)*kresonancem
+kbw = kbasefreq*(1/32)*kresonance
 ares resony agauss, kbasefreq, kbw, inumlayers, inumlayers*koctsep, 0, 1
 xout ares
  endop

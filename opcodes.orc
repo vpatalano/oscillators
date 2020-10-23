@@ -173,13 +173,22 @@ ares *= aenv
 xout ares
  endop
  
- opcode psybass1, a, iiioj
+ opcode psykick1, a, iiioj
 icps_start, icps_end, isweep, ishape, isin xin
 af1 expon icps_start, isweep, icps_end
 af1 pdhalfy af1, ishape, 0, icps_start
 ares oscili 1, af1, isin
 xout ares
  endop
+ 
+ opcode psybass1, a, io
+icps, itime xin
+itime = ( itime==0 ? p3 : itime)
+kmel line .99, p3, .8
+ares gbuzz .95, icps, int((1/3)*.5*sr/icps), 1.995, kmel, 67
+xout ares
+ endop
+
  
  
  

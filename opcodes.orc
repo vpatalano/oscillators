@@ -166,5 +166,14 @@ xout ares
  endop
 
  
+
+ opcode "phaserydazery", a, akkkko
+ain, kcps, kphasertrnsp, knum, kdbfeedback, iatktime xin
+ares phaser1 ain, kcps*semitone:k(kphasertrnsp), knum, db(kdbfeedback)
+aenv expseg 0.0001, iatktime, 1, 100000, 1
+ares *= aenv
+xout ares
+ endop
+ 
  
  

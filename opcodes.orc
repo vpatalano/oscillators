@@ -165,13 +165,19 @@ ares pluck 1, kcps, 16383, ifn, 1
 xout ares
  endop
 
- 
-
  opcode "phaserydazery", a, akkkko
 ain, kcps, kphasertrnsp, knum, kdbfeedback, iatktime xin
 ares phaser1 ain, kcps*semitone:k(kphasertrnsp), knum, db(kdbfeedback)
 aenv expseg 0.0001, iatktime, 1, 100000, 1
 ares *= aenv
+xout ares
+ endop
+ 
+ opcode psybass1, a, iiioj
+icps_start, icps_end, isweep, ishape, isin xin
+af1 expon icps_start, isweep, icps_end
+af1 pdhalfy af1, ishape, 0, icps_start
+ares oscili 1, af1, isin
 xout ares
  endop
  

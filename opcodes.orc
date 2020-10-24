@@ -181,10 +181,10 @@ ares oscili 1, af1, isin
 xout ares
  endop
  
- opcode psybass1, a, io
-icps, itime xin
+ opcode psybass1, a, iipoo 
+icps,icos,imul,icurve,itime xin 
 itime = ( itime==0 ? p3 : itime)
-kmel line .99, p3, .8
+kmel transeg  .99, p3,icurve, .8^imul
 ares gbuzz .95, icps, int((1/3)*.5*sr/icps), 1.995, kmel, 67
 xout ares
  endop

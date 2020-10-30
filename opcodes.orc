@@ -163,6 +163,47 @@ aenv expseg 0.0001, iatktime, 1, 100000, 1
 ares *= aenv
 xout ares
  endop
+
+ opcode "alforsite", aaaaaaaa, kakkikkkkaaaaPPPPOPo
+kamp, agrainfreq, kwavfreq, kduration, ienv2tab, kwaveform1, kwaveform2, kwaveform3, kwaveform4, asamplepos1, asamplepos2, asamplepos3, asamplepos4, kwavekey1, kwavekey2, kwavekey3, kwavekey4, krandommask, ixtratim, iopcode_id xin
+xtratim ixtratim
+kflag release
+if (kflag==1) then
+agrainfreq = 0
+endif
+irandft ftgentmp 0,0,32,-21,1,7 ;random values between 0 and 7
+tablew 0, 0, irandft, 0 ;write to table with raw index
+tablew 31, 1, irandft, 0 ;write to table with raw index
+ichannelmasks = irandft
+iwaveamptab = -1 ; default: even mix of all 4 waveforms and no trainlets
+iwavfreqstarttab = -1
+iwavfreqendtab = -1
+awavfm init 1
+ifmamptab = -1
+kfmenv = -1
+ienv_attack = -1 ;default rise shape
+ienv_decay = -1 ;default release shape
+ksustain_amount init 1 ;no attack/decay except env2
+ka_d_ratio init .5 ;insignificant
+igainmasks = -1 ;default: no gain masking
+idisttab = -1
+kdistribution init 0
+async init 0
+ksweepshape = 0
+kenv2amt = 1 ;full windowing
+imax_grains = 1000
+a1 , a2, a3, a4, a5, a6, a7, a8 partikkel agrainfreq, \
+              kdistribution, idisttab, async, kenv2amt, ienv2tab, ienv_attack, \
+              ienv_decay, ksustain_amount, ka_d_ratio, kduration, kamp, igainmasks, \
+              kwavfreq, ksweepshape, iwavfreqstarttab, iwavfreqendtab, awavfm, \
+              ifmamptab, kfmenv, -1,0,0, 0, \
+              ichannelmasks, krandommask, kwaveform1, kwaveform2, kwaveform3, \
+              kwaveform4, iwaveamptab, asamplepos1, asamplepos2, asamplepos3, \
+              asamplepos4, kwavekey1, kwavekey2, kwavekey3, kwavekey4, imax_grains, \
+              iopcode_id
+xout a1, a2, a3, a4, a5, a6, a7, a8
+ endop
+
  
  opcode psykick1, a, iiioj
 icps_start, icps_end, isweep, ishape, isin xin

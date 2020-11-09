@@ -231,4 +231,25 @@ xout aresd
  endop
  
  
+ opcode carnotite, a, kOp
+knew, kchamt, inlayers xin
+klfo1 jitter kchamt, 2, 4.6
+klfo2 jitter kchamt, 1.9, 4.7
+asig vco 1, knew*semitone(klfo1), 1, 0, 1, 1, .999999995, .125
+asig = .25*tanh(asig*2)
+asig2 vco 1, knew*semitone(-klfo2), 1, 0, 1, 1, .999999995, .25
+asig2 diff asig2
+anext init 0
+loop:
+inlayers += -1
+if inlayers>0 then
+ares1 carnotite knew, kchamt, inlayers
+igoto loop
+endif
+asig dcblock asig+asig2	;remove DC
+asig *= .0625*.25
+;asig phaser1 asig, knew*semitone(3), 36, .975867
+;asig tonex asig, 16*49, 2
+xout asig
+ endop
  
